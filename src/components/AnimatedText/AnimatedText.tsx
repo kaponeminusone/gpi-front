@@ -5,7 +5,7 @@ interface AnimatedTextProps {
   text: string;
   delay?: number;
   duration?: number;
-  type: 'leftToRight' | 'topToBottom' | 'bottomToTop' | 'lineByLine' | 'blur';
+  type: 'leftToRight' | 'rightToLeft' | 'topToBottom' | 'bottomToTop' | 'lineByLine' | 'blur' | 'typewriter';
   className?: string;
 }
 
@@ -21,6 +21,11 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
       case 'leftToRight':
         return {
           hidden: { x: -100, opacity: 0 },
+          visible: { x: 0, opacity: 1 },
+        };
+      case 'rightToLeft':
+        return {
+          hidden: { x: 100, opacity: 0 },
           visible: { x: 0, opacity: 1 },
         };
       case 'topToBottom':
@@ -40,33 +45,54 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
         };
       case 'lineByLine':
         return {
-          hidden: { y: 20, opacity: 0 },
-          visible: { y: 0, opacity: 1 },
+          hidden: { opacity: 0 },
+          visible: { opacity: 1 },
         };
       default:
         return {};
     }
   };
 
-  if (type === 'lineByLine') {
-    const lines = text.split('\n');
+  if (type === 'typewriter') {
+    const words = text.split(' ');
     return (
       <div className={className}>
-        {lines.map((line, index) => (
-          <motion.div
+        {words.map((word, index) => (
+          <motion.span
             key={index}
-            initial="hidden"
-            animate="visible"
-            variants={getAnimationVariants() as Variants}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{
-              duration,
-              delay: delay + index * 0.2,
+              duration: 0.1,
+              delay: delay + index * 0.15,
               ease: 'easeOut',
             }}
-            className="overflow-hidden"
+            className="inline-block mr-1"
           >
-            {line}
-          </motion.div>
+            {word}
+          </motion.span>
+        ))}
+      </div>
+    );
+  }
+
+  if (type === 'lineByLine') {
+    return (
+      <div className={className}>
+        {text.split('').map((char, index) => (
+          <motion.span
+            key={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              duration: 0.05,
+              delay: delay + index * 0.03,
+              ease: 'easeOut',
+            }}
+            className="inline-block"
+          >
+            {char === '\n' ? <br /> : char}
+          </motion.span>
         ))}
       </div>
     );
