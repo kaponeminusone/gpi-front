@@ -92,7 +92,7 @@ export default function ScrollContent({ children }: ScrollContentProps) {
 
   return (
     <div className="relative w-full h-full overflow-y-auto" ref={containerRef}>
-      <NavBar sections={sections} currentIndex={currentIndex} onSectionClick={handleSectionClick} />
+      <NavBar sections={(sections ? sections : [])} currentIndex={currentIndex} onSectionClick={handleSectionClick} />
       {React.Children.map(children, (child, index) => (
         <div
           key={index}
