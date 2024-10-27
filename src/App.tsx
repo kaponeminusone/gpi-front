@@ -2,7 +2,7 @@
 import './App.css'
 import { Header } from './components/AnimatedHeader/AnimatedHeader';
 import { AnimatedText } from './components/AnimatedText/AnimatedText'
-import { CardFoldHorizontal } from './components/Cards/CardHorizontal/CardFoldHorizontal';
+import { CardFoldHorizontal } from './components/Cards/CardFoldHorizontal';
 import ScrollContent from './components/ScrollContent/ScrollContent'
 import { VideoPlayer } from './components/VideoPlayer/VideoPlayer'
 
