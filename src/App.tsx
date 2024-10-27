@@ -4,11 +4,13 @@ import ScrollContent from './components/ScrollContent/ScrollContent'
 
 function App() {
 
+  const sections = ['Sección 1', 'Sección 2', 'Sección 3']
+
   return (
     <>
     <div className='w-full h-screen flex flex-col'>
       <h1 className='center text-4xl'> Header Hello World!</h1>
-      <ScrollContent>
+      <ScrollContent sections={sections}>
         <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
           <h2 className="text-4xl font-bold mb-4">Sección 1</h2>
           <p className="text-xl">Desplázate hacia abajo o haz clic en la flecha para continuar</p>
