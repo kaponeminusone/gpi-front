@@ -3,6 +3,7 @@ import './App.css'
 import MultipleSelectionQuestion from './components/Activities/MultipleSelectionQuestion'
 import RelationalQuestion from './components/Activities/RelationalQuestion'
 import TrueFalseQuestion from './components/Activities/TrueFalseQuestion'
+import DecisionGame from './components/DecisionGame/DecisionGame'
 import ScrollContent from './components/ScrollContent/ScrollContent'
 
 const options=[{id:'1', text:"Respuesta incorrecta"},{id:'2', text: "Respuesta correcta"}, {id:'3', text:"Respuesta incorrecta"},{id:'4', text:"Respuesta incorrecta"}]
@@ -81,6 +82,13 @@ function App() {
             </RelationalQuestion>
 
         </div>
+
+        <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
+          <DecisionGame></DecisionGame>
+
+        </div>
+
+
       </ScrollContent>
     </div>
     </>
