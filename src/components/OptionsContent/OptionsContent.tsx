@@ -1,12 +1,8 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Flag, Star, HelpCircle } from 'lucide-react';
 
 type Tab = 'content' | 'objectives' | 'info';
-
-interface OptionsContentProps {
-  activeTab: Tab;
-  onTabChange: (tab: Tab) => void;
-}
 
 interface ContentItem {
   id: string;
@@ -14,21 +10,38 @@ interface ContentItem {
   subitems?: { id: string; title: string }[];
 }
 
-const content: ContentItem[] = [
-  {
-    id: '1',
-    title: 'Introducción a las Habilidades Empresariales',
-    subitems: [
-      { id: '1.1', title: 'Conceptos básicos y definiciones' },
-      { id: '1.2', title: 'Importancia del liderazgo y la gestión del tiempo' }
-    ]
-  },
-  { id: '2', title: 'Liderazgo y Gestión del Tiempo' },
-  { id: '3', title: 'Comunicación Efectiva' },
-  { id: '4', title: 'Casos de Estudio y Mejores Prácticas' }
-];
+interface ObjectivesItem {
+  id: string;
+  title: string;
+}
 
-export default function OptionsContent({ activeTab, onTabChange }: OptionsContentProps) {
+interface OptionsContentProps {
+  content: ContentItem[];
+  objectives: ObjectivesItem[];
+  courseInfo: string;
+}
+
+export default function OptionsContent({ content, objectives, courseInfo }: OptionsContentProps) {
+  const [activeTab, setActiveTab] = useState<Tab>('content'); // Manejamos la pestaña activa internamente
+
+  const handleTabChange = (tab: Tab) => {
+    setActiveTab(tab);
+  };
+
+  // Función para obtener el título de la sección según la pestaña activa
+  const getSectionTitle = () => {
+    switch (activeTab) {
+      case 'content':
+        return 'Contenido del Curso';
+      case 'objectives':
+        return 'Objetivos del Curso';
+      case 'info':
+        return 'Información del Curso';
+      default:
+        return 'Contenido';
+    }
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case 'content':
@@ -61,12 +74,10 @@ export default function OptionsContent({ activeTab, onTabChange }: OptionsConten
             animate={{ opacity: 1, y: 0 }}
             className="space-y-4"
           >
-            <h3 className="font-medium text-gray-800">Objetivos del Curso</h3>
             <ul className="list-disc pl-5 space-y-2">
-              <li>Desarrollar habilidades de liderazgo efectivo</li>
-              <li>Mejorar la gestión del tiempo y productividad</li>
-              <li>Fortalecer la comunicación empresarial</li>
-              <li>Aplicar mejores prácticas en casos reales</li>
+              {objectives.map((objective) => (
+                <li key={objective.id}>{objective.title}</li>
+              ))}
             </ul>
           </motion.div>
         );
@@ -77,13 +88,7 @@ export default function OptionsContent({ activeTab, onTabChange }: OptionsConten
             animate={{ opacity: 1, y: 0 }}
             className="space-y-4"
           >
-            <h3 className="font-medium text-gray-800">Información del Curso</h3>
-            <p className="text-gray-600">
-              Este curso está diseñado para desarrollar habilidades empresariales esenciales
-              a través de un enfoque práctico y orientado a resultados. Los participantes
-              aprenderán conceptos fundamentales y aplicarán su conocimiento en situaciones
-              reales del mundo empresarial.
-            </p>
+            <p className="text-gray-600">{courseInfo}</p>
           </motion.div>
         );
     }
@@ -92,12 +97,13 @@ export default function OptionsContent({ activeTab, onTabChange }: OptionsConten
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl">
       <div className="flex items-center justify-between mb-6 border-b pb-4">
-        <h2 className="text-xl font-semibold">Contenido</h2>
+        {/* Cambia dinámicamente el título basado en la pestaña seleccionada */}
+        <h2 className="text-xl font-semibold">{getSectionTitle()}</h2>
         <div className="flex gap-4">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => onTabChange('info')}
+            onClick={() => handleTabChange('info')}
             className={`p-2 rounded-full ${activeTab === 'info' ? 'bg-gray-100' : ''}`}
           >
             <HelpCircle className="w-5 h-5" />
@@ -105,7 +111,7 @@ export default function OptionsContent({ activeTab, onTabChange }: OptionsConten
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => onTabChange('objectives')}
+            onClick={() => handleTabChange('objectives')}
             className={`p-2 rounded-full ${activeTab === 'objectives' ? 'bg-gray-100' : ''}`}
           >
             <Star className="w-5 h-5" />
@@ -113,7 +119,7 @@ export default function OptionsContent({ activeTab, onTabChange }: OptionsConten
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => onTabChange('content')}
+            onClick={() => handleTabChange('content')}
             className={`p-2 rounded-full ${activeTab === 'content' ? 'bg-gray-100' : ''}`}
           >
             <Flag className="w-5 h-5" />

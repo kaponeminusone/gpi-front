@@ -18,7 +18,7 @@ export const CardThinking: React.FC<CardThinkingProps> = ({
   return (
     <div
       style={{ width, height }}
-      className={`relative ${className}`}
+      className={`absolute ${className}`}
     >
       {/* Main bubble */}
       <div className="absolute inset-0 bg-white rounded-[30px] shadow-lg p-6">

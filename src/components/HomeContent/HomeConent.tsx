@@ -9,11 +9,10 @@ interface HomeContentProps {
   name: string;
   hours: number;
   activities: number;
+  children: React.ReactNode;
 }
 
-export default function HomeContent({ title, email, name, hours, activities }: HomeContentProps) {
-  const [activeTab, setActiveTab] = useState<'content' | 'objectives' | 'info'>('content');
-
+export default function HomeContent({ title, email, name, hours, activities, children }: HomeContentProps) {
   return (
     <div className="min-h-screen bg-gray-100">
       <motion.div
@@ -63,7 +62,7 @@ export default function HomeContent({ title, email, name, hours, activities }: H
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <OptionsContent activeTab={activeTab} onTabChange={setActiveTab} />
+         {children}
         </motion.div>
       </div>
     </div>

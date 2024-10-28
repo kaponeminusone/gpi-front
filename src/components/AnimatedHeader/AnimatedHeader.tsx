@@ -14,7 +14,7 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Transform values based on scroll
-  const height = useTransform(scrollY, [0, 100], ['140px', '70px']);
+  const height = 70;
   const scale = useTransform(scrollY, [0, 100], [1, 0.8]);
   const opacity = useTransform(scrollY, [0, 100], [1, 0.95]);
 
@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter }) => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      style={{ height, opacity }}
+      style={{opacity }}
       className="fixed top-0 left-0 right-0 z-50"
     >
       {/* Background layers */}
@@ -75,16 +75,16 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter }) => {
       <motion.div
         variants={contentVariants}
         style={{ scale }}
-        className="relative h-full container mx-auto px-6 py-4 flex items-end"
+        className="relative h-full container mx-auto px-3 py-2 flex items-end"
       >
         <div className="flex items-center gap-4 mb-2">
           {/* Chapter number */}
           {chapter && (
             <div className="flex items-center">
-              <div className="text-gray-300 text-4xl font-light mr-2">
+              <div className="text-gray-300 text-2xl font-light mr-2">
                 {chapter.split('.')[0]}
               </div>
-              <div className="text-white text-2xl font-medium">
+              <div className="text-white text-1xl font-medium">
                 {chapter.split('.')[1]}
               </div>
             </div>
