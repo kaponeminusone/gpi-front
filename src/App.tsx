@@ -5,6 +5,10 @@ import RelationalQuestion from './components/Activities/RelationalQuestion'
 import TrueFalseQuestion from './components/Activities/TrueFalseQuestion'
 import DecisionGame from './components/DecisionGame/DecisionGame'
 import ScrollContent from './components/ScrollContent/ScrollContent'
+import { VideoPlayer } from './components/VideoPlayer/VideoPlayer'
+import pdf from './assets/proof.pdf'
+import { PDFViewer } from './components/PDFViewer/PDFViewer'
+import HomeContent from './components/HomeContent/HomeConent'
 
 const options=[{id:'1', text:"Respuesta incorrecta"},{id:'2', text: "Respuesta correcta"}, {id:'3', text:"Respuesta incorrecta"},{id:'4', text:"Respuesta incorrecta"}]
 
@@ -34,11 +38,23 @@ const handleRelationalAnswer = (relations: { leftId: string, rightId: string }[]
 
 function App() {
 
+  const sections = ['Sección 1', 'Sección 2', 'Sección 3']
+
   return (
+    
     <>
+      <HomeContent
+        title="DESARROLLO DE HABILIDADES EMPRESARIALES"
+        email="imonterrosa@hotmail.com"
+        name="Iván Javier Monterrosa Castro"
+        hours={0}
+        activities={5}
+      />
+{/* 
     <div className='w-full h-screen flex flex-col'>
       <h1 className='center text-4xl'> Header Hello World!</h1>
-      <ScrollContent>
+
+      <ScrollContent sections={sections}>
         <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
           
           <MultipleSelectionQuestion question='¿Cual Respuesta es correcta?' 
@@ -90,7 +106,7 @@ function App() {
 
 
       </ScrollContent>
-    </div>
+    </div> */}
     </>
   )
 }
