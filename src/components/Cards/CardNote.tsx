@@ -18,7 +18,7 @@ export const CardNote: React.FC<CardNoteProps> = ({
   return (
     <div
       style={{ width, height }}
-      className={`bg-white rounded-lg shadow-lg p-6 flex flex-col justify-between ${className}`}
+      className={`absolute rounded-tl-lg rounded-br-lg shadow-lg p-6 flex flex-col justify-between ${className}`}
     >
       <p className="text-gray-700">{content}</p>
       {author && (

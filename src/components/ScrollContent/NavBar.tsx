@@ -34,7 +34,8 @@ export default function NavBar({ sections, currentIndex, onSectionClick }: NavBa
           }}
           aria-label={`Go to ${section}`}
         >
-          {index + 1}.{index + 1} {section}
+          {/* {index + 1}.{index + 1} {section} */}
+          {section}
         </motion.button>
       ))}
     </motion.nav>

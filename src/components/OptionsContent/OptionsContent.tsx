@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Flag, Star, HelpCircle } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Importa el componente Link
 
 type Tab = 'content' | 'objectives' | 'info';
 
 interface ContentItem {
   id: string;
   title: string;
+  route: string; // Añade un campo de ruta
   subitems?: { id: string; title: string }[];
 }
 
@@ -53,7 +55,9 @@ export default function OptionsContent({ content, objectives, courseInfo }: Opti
           >
             {content.map((item) => (
               <div key={item.id} className="space-y-2">
-                <h3 className="font-medium text-gray-800">{item.id}. {item.title}</h3>
+                <Link to={item.route} className="font-medium text-gray-800 hover:underline">
+                  {item.id}. {item.title}
+                </Link>
                 {item.subitems && (
                   <div className="pl-4 space-y-1">
                     {item.subitems.map((subitem) => (

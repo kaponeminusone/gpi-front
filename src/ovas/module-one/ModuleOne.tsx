@@ -3,10 +3,12 @@ import HomeContent from '../../components/HomeContent/HomeConent';
 import OptionsContent from '../../components/OptionsContent/OptionsContent';
 import './ModuleOne.css'
 import One from './Units/One/One';
+import IMGmodule from '../../assets/module-one/module1.png'
 
 interface ContentItem {
   id: string;
   title: string;
+  route: string; // Añade un campo de ruta
   subitems?: { id: string; title: string }[];
 }
 
@@ -21,14 +23,15 @@ function ModuleOne() {
     {
       id: '1',
       title: 'Introducción a las Habilidades Empresariales',
+      route: '/module-one/one',
       subitems: [
         { id: '1.1', title: 'Conceptos básicos y definiciones' },
         { id: '1.2', title: 'Importancia del liderazgo y la gestión del tiempo' }
       ]
     },
-    { id: '2', title: 'Liderazgo y Gestión del Tiempo' },
-    { id: '3', title: 'Comunicación Efectiva' },
-    { id: '4', title: 'Casos de Estudio y Mejores Prácticas' }
+    { id: '2', title: 'Liderazgo y Gestión del Tiempo', route: '/module-one/two'},
+    { id: '3', title: 'Comunicación Efectiva', route: '/module-one/tree' },
+    { id: '4', title: 'Casos de Estudio y Mejores Prácticas', route: '/module-one/four' }
   ];
   
   const objectives: ObjectivesItem[] = [
@@ -47,7 +50,7 @@ function ModuleOne() {
 
   return (
     <>
-      {/* <HomeContent 
+      <HomeContent 
       title={'Desarrollo de Habilidades Empresariales'} 
       email={'imonterrosac@hotmail.com'} 
       name={'Iván Javier Monterrosa Castro'} 
@@ -58,9 +61,8 @@ function ModuleOne() {
             objectives={objectives}
             courseInfo={courseInfo}
           />
-      </HomeContent> */}
-      
-      <One></One>
+        <img src={IMGmodule} className='absolute top-[170px] left-[700px] z-[-1]' alt=""/>
+      </HomeContent>
     </>
   )
 }
