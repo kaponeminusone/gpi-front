@@ -4,9 +4,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-
 import NavBar from './NavBar'
-
 
 interface ScrollContentProps {
   sections: string[]; // Secciones para la navegación
@@ -16,7 +14,6 @@ interface ScrollContentProps {
 export default function ScrollContent({ sections, children }: ScrollContentProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const goToSection = (index: number) => {
     console.log(`Cambiando a la sección: ${index}`); // Añade esto para verificar
@@ -27,16 +24,12 @@ export default function ScrollContent({ sections, children }: ScrollContentProps
   const nextSlide = () => {
     if (currentIndex < children.length - 1) {
       goToSection(currentIndex + 1)
-      //setPrevIndex(currentIndex)
-      //setCurrentIndex(currentIndex + 1)
     }
   }
 
   const prevSlide = () => {
     if (currentIndex > 0) {
       goToSection(currentIndex - 1)
-      //setPrevIndex(currentIndex)
-      //setCurrentIndex(currentIndex - 1)
     }
   }
 
@@ -49,17 +42,6 @@ export default function ScrollContent({ sections, children }: ScrollContentProps
       }
     }
 
-    /*const handleScroll = () => {
-      if (containerRef.current) {
-        const scrollPosition = containerRef.current.scrollTop
-        const windowHeight = window.innerHeight
-        const newIndex = Math.round(scrollPosition / windowHeight)
-        if (newIndex !== currentIndex) {
-          setPrevIndex(currentIndex)
-          setCurrentIndex(newIndex)
-        }
-      }
-    }*/
     const container = containerRef.current
     if (container) {
       container.addEventListener('wheel', handleWheel, { passive: false })
@@ -82,7 +64,7 @@ export default function ScrollContent({ sections, children }: ScrollContentProps
       opacity: 1,
     },
     exit: (direction: number) => ({
-      y: '-100%',
+      y: direction > 0 ? '-100%' : '100%',
       opacity: 0,
     }),
   }
@@ -110,17 +92,17 @@ export default function ScrollContent({ sections, children }: ScrollContentProps
           }}
           className="absolute w-full h-full"
         >
-          {child}
-        </div>
-      ))}
-      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2">
+          {children[currentIndex]}
+        </motion.div>
+      </AnimatePresence>
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
         {currentIndex > 0 && (
           <button onClick={prevSlide} className="mr-2">
             &uarr;
           </button>
         )}
         {currentIndex < children.length - 1 && (
-          <button onClick={nextSlide} aria-label="Next section">
+          <button onClick={nextSlide}>
             <ChevronDown className="h-6 w-6" />
           </button>
         )}
