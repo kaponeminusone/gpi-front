@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import NavBar from '../NavBar/NavBar'
 
 interface ScrollContentProps {
   children: React.ReactNode[]
@@ -10,31 +11,29 @@ interface ScrollContentProps {
 
 export default function ScrollContent({ children }: ScrollContentProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [prevIndex, setPrevIndex] = useState(0) // Estado para el índice anterior
+  const [prevIndex, setPrevIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const nextSlide = () => {
     if (currentIndex < children.length - 1) {
-      setPrevIndex(currentIndex) // Actualiza el índice anterior antes de cambiar
+      setPrevIndex(currentIndex)
       setCurrentIndex(currentIndex + 1)
     }
   }
 
   const prevSlide = () => {
     if (currentIndex > 0) {
-      setPrevIndex(currentIndex) // Actualiza el índice anterior antes de cambiar
+      setPrevIndex(currentIndex)
       setCurrentIndex(currentIndex - 1)
     }
   }
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      // Para desplazamiento hacia abajo
       if (e.deltaY > 50) {
         nextSlide()
-      }
-      // Para desplazamiento hacia arriba
-      else if (e.deltaY < -50) {
+      } else if (e.deltaY < -50) {
         prevSlide()
       }
     }
@@ -45,7 +44,7 @@ export default function ScrollContent({ children }: ScrollContentProps) {
         const windowHeight = window.innerHeight
         const newIndex = Math.round(scrollPosition / windowHeight)
         if (newIndex !== currentIndex) {
-          setPrevIndex(currentIndex); // Actualiza el índice anterior
+          setPrevIndex(currentIndex)
           setCurrentIndex(newIndex)
         }
       }
@@ -66,50 +65,51 @@ export default function ScrollContent({ children }: ScrollContentProps) {
   }, [currentIndex, children.length])
 
   const slideVariants = {
-    enter: (direction: number) => {
-      return ({
-      y: (direction > 0 ? '100%' : '-100%'), // Hacia abajo o hacia arriba
+    enter: (direction: number) => ({
+      y: direction > 0 ? '100%' : '-100%',
       opacity: 0,
-    })},
+    }),
     center: {
       y: 0,
       opacity: 1,
     },
     exit: (direction: number) => ({
-      y: '-100%', // Hacia arriba o hacia abajo
+      y: '-100%',
       opacity: 0,
     }),
   }
 
-  const direction = currentIndex - prevIndex; // Calcula la dirección con base en el índice actual y anterior
+  const direction = currentIndex - prevIndex
+
+  const sections = React.Children.map(children, (child, index) => `Section ${index + 1}`)
+
+  const handleSectionClick = (index: number) => {
+    const targetSection = sectionRefs.current[index]
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
-    <div className="relative w-full h-full overflow-hidden" ref={containerRef}>
-      <AnimatePresence initial={false}>
-        <motion.div
-          key={currentIndex}
-          custom={direction} // Pasa la dirección como prop
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            y: { type: 'spring', stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 },
-          }}
-          className="absolute w-full h-full"
+    <div className="relative w-full h-full overflow-y-auto" ref={containerRef}>
+      <NavBar sections={(sections ? sections : [])} currentIndex={currentIndex} onSectionClick={handleSectionClick} />
+      {React.Children.map(children, (child, index) => (
+        <div
+          key={index}
+          ref={(el) => (sectionRefs.current[index] = el)}
+          className="min-h-screen w-full pl-16"
         >
-          {children[currentIndex]}
-        </motion.div>
-      </AnimatePresence>
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+          {child}
+        </div>
+      ))}
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2">
         {currentIndex > 0 && (
-          <button onClick={prevSlide} className="mr-2">
-            &uarr; {/* Botón para ir a la sección anterior (opcional) */}
+          <button onClick={prevSlide} className="mr-2" aria-label="Previous section">
+            &uarr;
           </button>
         )}
         {currentIndex < children.length - 1 && (
-          <button onClick={nextSlide}>
+          <button onClick={nextSlide} aria-label="Next section">
             <ChevronDown className="h-6 w-6" />
           </button>
         )}
