@@ -1,31 +1,42 @@
+// ScrollContent.tsx
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import NavBar from '../NavBar/NavBar'
+
+import NavBar from './NavBar'
+
 
 interface ScrollContentProps {
+  sections: string[]; // Secciones para la navegación
   children: React.ReactNode[]
 }
 
-export default function ScrollContent({ children }: ScrollContentProps) {
+export default function ScrollContent({ sections, children }: ScrollContentProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [prevIndex, setPrevIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
 
+  const goToSection = (index: number) => {
+    console.log(`Cambiando a la sección: ${index}`); // Añade esto para verificar
+    setCurrentIndex(index);
+  }
+  
+
   const nextSlide = () => {
     if (currentIndex < children.length - 1) {
-      setPrevIndex(currentIndex)
-      setCurrentIndex(currentIndex + 1)
+      goToSection(currentIndex + 1)
+      //setPrevIndex(currentIndex)
+      //setCurrentIndex(currentIndex + 1)
     }
   }
 
   const prevSlide = () => {
     if (currentIndex > 0) {
-      setPrevIndex(currentIndex)
-      setCurrentIndex(currentIndex - 1)
+      goToSection(currentIndex - 1)
+      //setPrevIndex(currentIndex)
+      //setCurrentIndex(currentIndex - 1)
     }
   }
 
@@ -38,7 +49,7 @@ export default function ScrollContent({ children }: ScrollContentProps) {
       }
     }
 
-    const handleScroll = () => {
+    /*const handleScroll = () => {
       if (containerRef.current) {
         const scrollPosition = containerRef.current.scrollTop
         const windowHeight = window.innerHeight
@@ -48,18 +59,15 @@ export default function ScrollContent({ children }: ScrollContentProps) {
           setCurrentIndex(newIndex)
         }
       }
-    }
-
+    }*/
     const container = containerRef.current
     if (container) {
       container.addEventListener('wheel', handleWheel, { passive: false })
-      container.addEventListener('scroll', handleScroll)
     }
 
     return () => {
       if (container) {
         container.removeEventListener('wheel', handleWheel)
-        container.removeEventListener('scroll', handleScroll)
       }
     }
   }, [currentIndex, children.length])
@@ -79,32 +87,35 @@ export default function ScrollContent({ children }: ScrollContentProps) {
     }),
   }
 
-  const direction = currentIndex - prevIndex
-
-  const sections = React.Children.map(children, (child, index) => `Section ${index + 1}`)
-
-  const handleSectionClick = (index: number) => {
-    const targetSection = sectionRefs.current[index]
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+  const direction = currentIndex - (currentIndex > 0 ? currentIndex - 1 : 0);
 
   return (
-    <div className="relative w-full h-full overflow-y-auto" ref={containerRef}>
-      <NavBar sections={(sections ? sections : [])} currentIndex={currentIndex} onSectionClick={handleSectionClick} />
-      {React.Children.map(children, (child, index) => (
-        <div
-          key={index}
-          ref={(el) => (sectionRefs.current[index] = el)}
-          className="min-h-screen w-full pl-16"
+    <div className="relative w-full h-screen overflow-hidden" ref={containerRef}>
+      <NavBar 
+        sections={sections} 
+        currentIndex={currentIndex} 
+        onSectionClick={goToSection} 
+      />
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={currentIndex}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            y: { type: 'spring', stiffness: 300, damping: 30 },
+            opacity: { duration: 0.2 },
+          }}
+          className="absolute w-full h-full"
         >
           {child}
         </div>
       ))}
       <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2">
         {currentIndex > 0 && (
-          <button onClick={prevSlide} className="mr-2" aria-label="Previous section">
+          <button onClick={prevSlide} className="mr-2">
             &uarr;
           </button>
         )}
