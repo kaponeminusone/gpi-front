@@ -1,94 +1,87 @@
+// ScrollContent.tsx
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import NavBar from './NavBar'
 
 interface ScrollContentProps {
+  sections: string[]; // Secciones para la navegación
   children: React.ReactNode[]
 }
 
-export default function ScrollContent({ children }: ScrollContentProps) {
+export default function ScrollContent({ sections, children }: ScrollContentProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [prevIndex, setPrevIndex] = useState(0) // Estado para el índice anterior
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const goToSection = (index: number) => {
+    console.log(`Cambiando a la sección: ${index}`); // Añade esto para verificar
+    setCurrentIndex(index);
+  }
+  
 
   const nextSlide = () => {
     if (currentIndex < children.length - 1) {
-      setPrevIndex(currentIndex) // Actualiza el índice anterior antes de cambiar
-      setCurrentIndex(currentIndex + 1)
+      goToSection(currentIndex + 1)
     }
   }
 
   const prevSlide = () => {
     if (currentIndex > 0) {
-      setPrevIndex(currentIndex) // Actualiza el índice anterior antes de cambiar
-      setCurrentIndex(currentIndex - 1)
+      goToSection(currentIndex - 1)
     }
   }
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      // Para desplazamiento hacia abajo
       if (e.deltaY > 50) {
         nextSlide()
-      }
-      // Para desplazamiento hacia arriba
-      else if (e.deltaY < -50) {
+      } else if (e.deltaY < -50) {
         prevSlide()
-      }
-    }
-
-    const handleScroll = () => {
-      if (containerRef.current) {
-        const scrollPosition = containerRef.current.scrollTop
-        const windowHeight = window.innerHeight
-        const newIndex = Math.round(scrollPosition / windowHeight)
-        if (newIndex !== currentIndex) {
-          setPrevIndex(currentIndex); // Actualiza el índice anterior
-          setCurrentIndex(newIndex)
-        }
       }
     }
 
     const container = containerRef.current
     if (container) {
       container.addEventListener('wheel', handleWheel, { passive: false })
-      container.addEventListener('scroll', handleScroll)
     }
 
     return () => {
       if (container) {
         container.removeEventListener('wheel', handleWheel)
-        container.removeEventListener('scroll', handleScroll)
       }
     }
   }, [currentIndex, children.length])
 
   const slideVariants = {
-    enter: (direction: number) => {
-      return ({
-      y: (direction > 0 ? '100%' : '-100%'), // Hacia abajo o hacia arriba
+    enter: (direction: number) => ({
+      y: direction > 0 ? '100%' : '-100%',
       opacity: 0,
-    })},
+    }),
     center: {
       y: 0,
       opacity: 1,
     },
     exit: (direction: number) => ({
-      y: '-100%', // Hacia arriba o hacia abajo
+      y: direction > 0 ? '-100%' : '100%',
       opacity: 0,
     }),
   }
 
-  const direction = currentIndex - prevIndex; // Calcula la dirección con base en el índice actual y anterior
+  const direction = currentIndex - (currentIndex > 0 ? currentIndex - 1 : 0);
 
   return (
-    <div className="relative w-full h-full overflow-hidden" ref={containerRef}>
+    <div className="relative w-full h-screen overflow-hidden" ref={containerRef}>
+      <NavBar 
+        sections={sections} 
+        currentIndex={currentIndex} 
+        onSectionClick={goToSection} 
+      />
       <AnimatePresence initial={false}>
         <motion.div
           key={currentIndex}
-          custom={direction} // Pasa la dirección como prop
+          custom={direction}
           variants={slideVariants}
           initial="enter"
           animate="center"
@@ -105,7 +98,7 @@ export default function ScrollContent({ children }: ScrollContentProps) {
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
         {currentIndex > 0 && (
           <button onClick={prevSlide} className="mr-2">
-            &uarr; {/* Botón para ir a la sección anterior (opcional) */}
+            &uarr;
           </button>
         )}
         {currentIndex < children.length - 1 && (
