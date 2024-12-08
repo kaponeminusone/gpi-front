@@ -22,7 +22,7 @@ import Quiz from './Quiz'
 
 
 function One() {
-  const sections = ['1.1 Conceptos y definiciones',
+  const sections = ['1.1 Conceptos y definiciones',,
                     ' 1.1.1 Descubre las Habilidades', 
                     '1.2 Importancia del Liderazgo y la Gestión del Tiempo',
                     ' 1.2.1 Descubre las Teorias de Liderazgo',
