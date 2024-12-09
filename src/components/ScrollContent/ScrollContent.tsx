@@ -4,7 +4,7 @@ import { ChevronDown } from 'lucide-react';
 import NavBar from './NavBar';
 
 interface ScrollContentProps {
-  sections: string[]; // Secciones para la navegación
+  sections: (string | undefined)[];
   children: React.ReactNode[];
 }
 

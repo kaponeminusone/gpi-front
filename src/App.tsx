@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ModuleOne from './ovas/module-one/ModuleOne';
 import ModuleOneOne from './ovas/module-one/Units/One/One';
 import ModuleOneTwo from './ovas/module-one/Units/Two/Two';
+import ModuleOneThree from './ovas/module-one/Units/Three/Three';
 
 // Importa más unidades según sea necesario
 
@@ -12,6 +13,9 @@ function App() {
         <Route path="/module-one" element={<ModuleOne />} />
         <Route path="/module-one/one" element={<ModuleOneOne />} />
         <Route path="/module-one/two" element={<ModuleOneTwo />} />
+        <Route path="/module-one/three" element={<ModuleOneThree />} />
+        {/* <Route path="/module-one/four" element={<ModuleOneFour />} />
+        <Route path="/module-one/five" element={<ModuleOneFive />} /> */}
         {/* Define más rutas para otros módulos y unidades */}
       </Routes>
     </Router>

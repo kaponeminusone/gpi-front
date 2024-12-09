@@ -29,9 +29,37 @@ function ModuleOne() {
         { id: '1.2', title: 'Importancia del liderazgo y la gestión del tiempo' }
       ]
     },
-    { id: '2', title: 'Liderazgo y Gestión del Tiempo', route: '/module-one/two'},
-    { id: '3', title: 'Comunicación Efectiva', route: '/module-one/tree' },
-    { id: '4', title: 'Casos de Estudio y Mejores Prácticas', route: '/module-one/four' }
+
+    { id: '2', title: 'Liderazgo y Gestión del Tiempo', 
+      route: '/module-one/two',
+      subitems: [
+        { id: '2.1', title: 'Técnicas de Liderazgo Efectivo' },
+        { id: '2.2', title: 'Estrategias para la Gestión Eficiente del Tiempo' }
+      ]
+    },
+
+    { id: '3', title: 'Resolución de Problemas', 
+      route: '/module-one/three',
+      subitems: [
+        { id: '3.1', title: 'Métodos de Identificación y Análisis de Problemas' },
+        { id: '3.2', title: 'Herramientas para la Toma de Decisiones' }
+      ] },
+
+    { id: '4', title: 'Comunicación Efectiva', 
+      route: '/module-one/four',
+      subitems: [
+        { id: '4.1', title: 'Principios de la Comunicación Empresarial' },
+        { id: '4.2', title: 'Técnicas de Presentación y Negociación' }
+      ]
+     },
+
+     { id: '5', title: 'Casos de Estudio y Mejores Prácticas', 
+      route: '/module-one/five',
+      subitems: [
+        { id: '5.1', title: 'Análisis de Ejemplos Reales' },
+        { id: '5.2', title: 'Implementación de Soluciones Innovadoras' }
+      ]
+     }
   ];
   
   const objectives: ObjectivesItem[] = [

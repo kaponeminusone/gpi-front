@@ -83,16 +83,25 @@ export default function RelationalQuestion({
     if (hasSubmitted) {
       const userRelation = relations.find(r => r.leftId === id || r.rightId === id)
       const correctRelation = correctRelations.find(r => r.leftId === id || r.rightId === id)
-      if (userRelation && correctRelation) return 'bg-green-500 text-white'
-      if (userRelation) return 'bg-red-500 text-white'
-      return 'bg-gray-300 text-gray-800'
+
+      if (userRelation) {
+        // Check if the user's relation matches the correct relation
+        const isCorrect = correctRelations.some(
+          correct => correct.leftId === userRelation.leftId && correct.rightId === userRelation.rightId
+        )
+        return isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+      }
+      return 'bg-gray-300 text-gray-800' // For unmatched concepts
     }
     return relationColors[id] || 'bg-gray-300 text-gray-800'
   }
 
   return (
     <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-      <h2 className="text-xl font-bold mb-4 text-gray-800">{question}</h2>
+      <h2 className="text-2xl font-bold text-center mb-6">{question}</h2>
+        <p className='text-sm text-gray-800 text-center mb-[10px]'>
+        Relaciona los elementos de la <strong>izquierda</strong> con los de la <strong>derecha</strong>.
+        </p>
       <div className="flex justify-between space-x-4">
         <div className="w-1/2 space-y-2">
           {leftConcepts.map((concept) => (
