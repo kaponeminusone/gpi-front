@@ -83,7 +83,7 @@ function ModuleOne() {
       email={'imonterrosac@hotmail.com'} 
       name={'Iván Javier Monterrosa Castro'} 
       hours={10} 
-      activities={6}>
+      activities={5}>
         <OptionsContent
             content={content}
             objectives={objectives}

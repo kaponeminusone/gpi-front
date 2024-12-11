@@ -106,7 +106,7 @@ export default function ScrollContent({ sections, children }: ScrollContentProps
         )}
         {currentIndex < children.length - 1 && (
           <button onClick={nextSlide}>
-            <ChevronDown className="h-6 w-6" />
+            <ChevronDown className="h-6 w-6 " />
           </button>
         )}
       </div>

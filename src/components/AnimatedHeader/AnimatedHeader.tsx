@@ -1,15 +1,19 @@
-'use client'
+'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Importar Link
 
 interface HeaderProps {
   title: string;
   subtitle: string;
   chapter?: string;
+  prevRoute?: string; // Ruta hacia atrás
+  nextRoute?: string; // Ruta hacia adelante
 }
 
-export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter }) => {
+export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter, prevRoute, nextRoute }) => {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -36,10 +40,10 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter }) => {
       scaleX: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
-        when: "beforeChildren",
-      }
-    }
+        ease: 'easeOut',
+        when: 'beforeChildren',
+      },
+    },
   };
 
   const contentVariants = {
@@ -53,8 +57,8 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter }) => {
       transition: {
         duration: 0.4,
         delay: 0.3,
-      }
-    }
+      },
+    },
   };
 
   return (
@@ -68,26 +72,46 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter }) => {
       {/* Background layers */}
       <div className="absolute inset-0 bg-gray-100 bg-opacity-10 backdrop-blur-sm" />
       <div className="absolute inset-0">
-        <div className="h-full bg-gradient-to-r from-gray-800 to-gray-700 rounded-br-[2rem]" />
+        <div className="h-full bg-gradient-to-r from-gray-800 to-gray-700 rounded-br-[2rem]">
+          <div className='absolute right-[20px] top-[25%] z-[1]'>
+              {/* Navigation Arrows */}
+            <div className="flex items-center gap-4">
+              {prevRoute && (
+                <Link
+                  to={prevRoute}
+                  className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition text-white"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </Link>
+              )}
+              {nextRoute && (
+                <Link
+                  to={nextRoute}
+                  className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition text-white"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Content container */}
       <motion.div
         variants={contentVariants}
         style={{ scale }}
-        className="relative h-full container mx-auto px-4 py-2 flex items-center"
+        className="relative h-full container mx-auto px-4 py-2 flex items-center justify-between"
       >
         {/* Chapter circle */}
         {chapter && (
-          <motion.div 
+          <motion.div
             className="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4 overflow-hidden"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.5, type: "spring", stiffness: 260, damping: 20 }}
+            transition={{ delay: 0.5, type: 'spring', stiffness: 260, damping: 20 }}
           >
-            <div className="text-gray-800 text-lg font-bold">
-              {chapter.split('.')[0]}
-            </div>
+            <div className="text-gray-800 text-lg font-bold">{chapter.split('.')[0]}</div>
           </motion.div>
         )}
 
@@ -102,9 +126,9 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter }) => {
           </motion.h1>
           <motion.h2
             initial={{ opacity: 1, height: 'auto' }}
-            animate={{ 
-              opacity: isScrolled ? 0 : 1, 
-              height: isScrolled ? 0 : 'auto' 
+            animate={{
+              opacity: isScrolled ? 0 : 1,
+              height: isScrolled ? 0 : 'auto',
             }}
             transition={{ duration: 0.3 }}
             className="text-gray-300 text-lg overflow-hidden"
@@ -112,8 +136,6 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter }) => {
             {subtitle}
           </motion.h2>
         </div>
-
-        {/* Additional elements can be added here, e.g., navigation links or buttons */}
       </motion.div>
     </motion.header>
   );

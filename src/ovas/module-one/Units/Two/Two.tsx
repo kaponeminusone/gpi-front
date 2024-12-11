@@ -53,7 +53,10 @@ function Two() {
         <Header 
           title={'Liderazgo y Gestión del Tiempo'} 
           subtitle={'Unidad 2'} 
-          chapter={'2'}/>
+          chapter={'2'}
+          prevRoute="/module-one/one"
+          nextRoute="/module-one/three"
+          />
       </div>
       <ScrollContent sections={sections}>
         <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">

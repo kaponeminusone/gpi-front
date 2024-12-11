@@ -13,17 +13,20 @@ import IMGdruker from '../../../../assets/module-one/Drucker.png'
 import IMGlider from '../../../../assets/module-one/lider.png'
 import IMGdirection from '../../../../assets/module-one/direction.png'
 import IMGModule1_3 from '../../../../assets/module-one/module1-3.png'
+import IMGBrain from '../../../../assets/module-one/brain.jpg'
 import { CardSelection } from '../../../../components/Cards/CardSelection'
 import { CardFoldChained } from '../../../../components/Cards/CardFoldChained'
 import { CardSwap } from '../../../../components/Cards/CardSwap'
 
 import { CalendarDays, Clock, LayoutGrid } from 'lucide-react';
 import Quiz from './Quiz'
+import { CardTitle } from '../../../../components/Cards/CardTitle'
 
 
 function One() {
   const sections = ['1.1 Conceptos y definiciones',
-                    ' 1.1.1 Descubre las Habilidades', 
+                    '1.1.1 Conceptos',
+                    ' 1.1.2 Descubre las Habilidades', 
                     '1.2 Importancia del Liderazgo y la Gestión del Tiempo',
                     ' 1.2.1 Descubre las Teorias de Liderazgo',
                     ' 1.2.2 Gestión del Tiempo y Tecnicas Avanzadas',
@@ -36,9 +39,33 @@ function One() {
         <Header 
           title={'Introducción a las Habilidades Empresariales'} 
           subtitle={'Unidad 1'} 
-          chapter={'1'}/>
+          chapter={'1'}
+          prevRoute="/module-one"
+          nextRoute="/module-one/two"
+          />
       </div>
       <ScrollContent sections={sections}>
+        
+        <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
+          <CardTitle  
+            title="Conceptos y definiciones"
+            subtitle='Habilidades Empresariales'
+            className="top-[-150px] left-[0]"
+          />
+          <AnimatedElement 
+            type={'slide'}
+            slideDirection={'bottom'}
+            delay ={0}
+            duration={1}
+            className={'top-[300px] z-[-1] justify-center flex-center'}
+          >
+            <img src={IMGBrain} className='w-[200px]'/>
+
+          </AnimatedElement>
+
+        </div>
+        
+
         <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
         
         <FocusComponent>
@@ -149,6 +176,7 @@ function One() {
               className={'top-[20px] left-[200px] z-[11]'}
               >
             <CardNote 
+            title='Importancia del Liderazgo y La Gestion del Tiempo'
             content={'El liderazgo en el contexto empresarial no '+
             'solo se refiere a la capacidad de un individuo para '+
             'guiar a un equipo, sino que también involucra la habilidad '+
@@ -156,7 +184,7 @@ function One() {
             'crecimiento personal y profesional de los empleados.'}
             author={'Burns, 2012'}
             width='1000px'
-            height='120px'  
+            height='190px'  
             className='bg-[#d9d9d9a4]'
             />
             </AnimatedElement>
@@ -166,7 +194,7 @@ function One() {
               slideDirection={'left'}
               delay ={1}
               duration={1}
-              className={'top-[160px] left-[200px] z-[10]'}
+              className={'top-[230px] left-[200px] z-[10]'}
               >
             <CardNote 
             content={'Un líder eficaz debe ser capaz de equilibrar las '+
@@ -184,7 +212,7 @@ function One() {
               slideDirection={'bottom'}
               delay ={4}
               duration={2}
-              className={'top-[300px] left-[700px] z-[13]'}
+              className={'top-[400px] left-[700px] z-[13]'}
               >
               <CardSelection
                 question="¿Consideras importantes las habilidades empresariales para tu desarrollo profesional?"
