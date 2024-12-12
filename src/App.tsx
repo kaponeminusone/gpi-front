@@ -1,33 +1,29 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ModuleOne from './ovas/module-one/ModuleOne';
+import ModuleOneOne from './ovas/module-one/Units/One/One';
+import ModuleOneTwo from './ovas/module-one/Units/Two/Two';
+import ModuleOneThree from './ovas/module-one/Units/Three/Three';
+import ModuleOneFour from './ovas/module-one/Units/Four/Four';
+import ModuleOneFive from './ovas/module-one/Units/Five/Five';
 
 import './App.css'
 
-import ScrollContent from './components/ScrollContent/ScrollContent'
-
 function App() {
-
-  const sections = ['Sección 1', 'Sección 2', 'Sección 3']
-
   return (
-    <>
-    <div className='w-full h-screen flex flex-col'>
-      <h1 className='center text-4xl'> Header Hello World!</h1>
-      <ScrollContent sections={sections}>
-        <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
-          <h2 className="text-4xl font-bold mb-4">Sección 1</h2>
-          <p className="text-xl">Desplázate hacia abajo o haz clic en la flecha para continuar</p>
-        </div>
-        <div className="bg-secondary text-secondary-foreground p-8 h-screen flex flex-col items-center justify-center">
-          <h2 className="text-4xl font-bold mb-4">Sección 2</h2>
-          <p className="text-xl">Contenido de la segunda sección</p>
-        </div>
-        <div className="bg-accent text-accent-foreground p-8 h-screen flex flex-col items-center justify-center">
-          <h2 className="text-4xl font-bold mb-4">Sección 3</h2>
-          <p className="text-xl">Última sección del contenido</p>
-        </div>
-      </ScrollContent>
-    </div>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/module-one" element={<ModuleOne />} />
+        <Route path="/module-one/one" element={<ModuleOneOne />} />
+        <Route path="/module-one/two" element={<ModuleOneTwo />} />
+        <Route path="/module-one/three" element={<ModuleOneThree />} />
+        <Route path="/module-one/four" element={<ModuleOneFour />} />
+        <Route path="/module-one/five" element={<ModuleOneFive />} />
+        {/* <Route path="/module-one/four" element={<ModuleOneFour />} />
+        <Route path="/module-one/five" element={<ModuleOneFive />} /> */}
+        {/* Define más rutas para otros módulos y unidades */}
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

@@ -17,14 +17,15 @@ export const CardFoldHorizontal: React.FC<CardFoldHorizontalProps> = ({
   className = '',
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); // Estado para el índice hover
+
   // Convertir el valor de width a número si tiene unidades
   const cardWidth = parseFloat(width);
-  const overlap = 60;  // La superposición entre las cartas
+  const overlap = 60; // La superposición entre las cartas
   const numCards = cards.length;
 
-  const totalExpandedWidth = cardWidth * numCards - (numCards - 1) * overlap;
-  const centerOffset = (totalExpandedWidth - cardWidth) / 2;
+  const totalExpandedWidth = cardWidth * numCards;
+  const centerOffset = totalExpandedWidth - cardWidth;
 
   return (
     <div className={`relative ${className}`}>
@@ -54,7 +55,8 @@ export const CardFoldHorizontal: React.FC<CardFoldHorizontalProps> = ({
                 x: isExpanded ? index * (cardWidth - overlap) - centerOffset : 0,
                 y: isExpanded ? index * 5 : 0,
                 rotate: isExpanded ? -2 + index * 1 : 0,
-                zIndex: isExpanded ? index : cards.length - index,
+                zIndex: hoveredIndex === index ? 100 : (isExpanded ? index : cards.length - index),
+                scale: hoveredIndex === index ? 1.05 : 1, // Aumentar ligeramente el tamaño al hacer hover
               }}
               transition={{
                 duration: 0.5,
@@ -63,10 +65,14 @@ export const CardFoldHorizontal: React.FC<CardFoldHorizontalProps> = ({
                 damping: 15
               }}
               onClick={() => setIsExpanded(!isExpanded)}
+              onMouseEnter={() => setHoveredIndex(index)} // Actualizar el índice cuando se hace hover
+              onMouseLeave={() => setHoveredIndex(null)} // Limpiar el índice al salir
               style={{ width, height }}
             >
               <div 
-                className="w-full h-full bg-white rounded-lg shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all"
+                className={`w-full h-full bg-[#e7e7e7] rounded-xl shadow-lg p-6 cursor-pointer transition-all ${
+                  hoveredIndex === index ? 'shadow-xl' : 'shadow-lg'
+                }`} // Cambiar la sombra al hacer hover
                 style={{
                   transform: isExpanded ? `rotate3d(0, 1, 0, ${index * 2}deg)` : 'none',
                   transition: 'transform 0.4s ease-out'

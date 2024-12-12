@@ -30,7 +30,7 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
         };
       case 'topToBottom':
         return {
-          hidden: { y: -100, opacity: 0 },
+          hidden: { y: -50, opacity: 0 },
           visible: { y: 0, opacity: 1 },
         };
       case 'bottomToTop':
