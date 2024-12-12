@@ -6,7 +6,7 @@ import ModuleOneThree from './ovas/module-one/Units/Three/Three';
 import ModuleOneFour from './ovas/module-one/Units/Four/Four';
 import ModuleOneFive from './ovas/module-one/Units/Five/Five';
 
-// Importa más unidades según sea necesario
+import './App.css'
 
 function App() {
   return (
