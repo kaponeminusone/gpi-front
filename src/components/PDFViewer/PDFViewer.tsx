@@ -19,6 +19,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl, title }) => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [scale, setScale] = useState<number>(1.0);
   const [containerHeight, setContainerHeight] = useState<number>(0);
+  const [editingPage, setEditingPage] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>(`${pageNumber}`);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
@@ -40,9 +42,30 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl, title }) => {
   }, []);
 
   const changePage = (offset: number) => {
-    setPageNumber(prevPageNumber =>
+    setPageNumber((prevPageNumber) =>
       Math.min(Math.max(1, prevPageNumber + offset), numPages)
     );
+  };
+
+  const handlePageClick = () => {
+    setEditingPage(true);
+    setInputValue(`${pageNumber}`);
+  };
+
+  const handleInputBlur = () => {
+    const page = Math.max(1, Math.min(numPages, parseInt(inputValue, 10) || pageNumber));
+    setPageNumber(page);
+    setEditingPage(false);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleInputBlur();
+    }
   };
 
   const containerVariants = {
@@ -51,9 +74,9 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl, title }) => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="flex flex-col bg-white shadow-xl rounded-lg"
-      style={{ height: '80vh', backgroundColor: 'red'}}
+      style={{ height: '80vh', backgroundColor: 'red' }}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -68,14 +91,14 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl, title }) => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <button
-                onClick={() => setScale(prev => Math.max(0.5, prev - 0.1))}
+                onClick={() => setScale((prev) => Math.max(0.5, prev - 0.1))}
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
                 -
               </button>
               <span className="text-sm text-gray-600">{Math.round(scale * 100)}%</span>
               <button
-                onClick={() => setScale(prev => Math.min(2, prev + 0.1))}
+                onClick={() => setScale((prev) => Math.min(2, prev + 0.1))}
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
                 +
@@ -100,9 +123,25 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl, title }) => {
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <span className="text-sm text-gray-600">
-            Page {pageNumber} of {numPages}
-          </span>
+
+          {editingPage ? (
+            <input
+              type="number"
+              value={inputValue}
+              onChange={handleInputChange}
+              onBlur={handleInputBlur}
+              onKeyDown={handleInputKeyDown}
+              className="w-20 text-center border border-gray-300 rounded"
+            />
+          ) : (
+            <span
+              className="text-sm text-gray-600 cursor-pointer"
+              onClick={handlePageClick}
+            >
+              Page {pageNumber} of {numPages}
+            </span>
+          )}
+
           <button
             onClick={() => changePage(1)}
             disabled={pageNumber >= numPages}

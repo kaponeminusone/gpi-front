@@ -22,15 +22,13 @@ interface OptionsContentProps {
   objectives: ObjectivesItem[];
   courseInfo: string;
 }
-
 export default function OptionsContent({ content, objectives, courseInfo }: OptionsContentProps) {
-  const [activeTab, setActiveTab] = useState<Tab>('content'); // Manejamos la pestaña activa internamente
+  const [activeTab, setActiveTab] = useState<Tab>('content');
 
   const handleTabChange = (tab: Tab) => {
     setActiveTab(tab);
   };
 
-  // Función para obtener el título de la sección según la pestaña activa
   const getSectionTitle = () => {
     switch (activeTab) {
       case 'content':
@@ -101,7 +99,6 @@ export default function OptionsContent({ content, objectives, courseInfo }: Opti
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl">
       <div className="flex items-center justify-between mb-6 border-b pb-4">
-        {/* Cambia dinámicamente el título basado en la pestaña seleccionada */}
         <h2 className="text-xl font-semibold">{getSectionTitle()}</h2>
         <div className="flex gap-4">
           <motion.button
@@ -130,7 +127,9 @@ export default function OptionsContent({ content, objectives, courseInfo }: Opti
           </motion.button>
         </div>
       </div>
-      {renderContent()}
+      <div className="max-h-[450px] overflow-y-auto pr-2">
+        {renderContent()}
+      </div>
     </div>
   );
 }

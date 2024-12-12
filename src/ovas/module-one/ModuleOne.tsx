@@ -5,6 +5,9 @@ import './ModuleOne.css'
 import One from './Units/One/One';
 import IMGmodule from '../../assets/module-one/module1.png'
 
+import { FloatingPDFViewerButton } from '../../components/PDFViewer/FloatingPDFViewerButton';
+import module1Document from '../../assets/module-one/module_1_document.pdf';
+
 interface ContentItem {
   id: string;
   title: string;
@@ -90,6 +93,11 @@ function ModuleOne() {
             courseInfo={courseInfo}
           />
         <img src={IMGmodule} className='absolute top-[170px] left-[700px] z-[-1]' alt=""/>
+        <FloatingPDFViewerButton
+          pdfUrl={module1Document}
+          title="Module 1 Document"
+          className='absolute bottom-[40px] right-[40px]'
+        />
       </HomeContent>
     </>
   )
