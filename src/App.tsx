@@ -7,6 +7,8 @@ import ModuleOneFour from './ovas/module-one/Units/Four/Four';
 import ModuleOneFive from './ovas/module-one/Units/Five/Five';
 
 import './App.css'
+import ModuleTen from './ovas/module-ten/ModuleTen';
+import ModuleTenOne from './ovas/module-ten/Units/One/One';
 
 function App() {
   return (
@@ -18,10 +20,15 @@ function App() {
         <Route path="/module-one/three" element={<ModuleOneThree />} />
         <Route path="/module-one/four" element={<ModuleOneFour />} />
         <Route path="/module-one/five" element={<ModuleOneFive />} />
+        
+        <Route path="/module-ten" element={<ModuleTen />} />
+        <Route path="/module-ten/one" element={<ModuleTenOne />} />
         {/* <Route path="/module-one/four" element={<ModuleOneFour />} />
         <Route path="/module-one/five" element={<ModuleOneFive />} /> */}
         {/* Define más rutas para otros módulos y unidades */}
       </Routes>
+
+
     </Router>
   );
 }
