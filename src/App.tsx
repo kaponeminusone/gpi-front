@@ -13,6 +13,9 @@ import ModuleOneFour from './ovas/module-one/Units/Four/Four';
 import ModuleOneFive from './ovas/module-one/Units/Five/Five';
 
 import ModuleTwoOne from './ovas/module-two/Units/One/One';
+import ModuleTwoTwo from './ovas/module-two/Units/Two/Two';
+import ModuleTwoThree from './ovas/module-two/Units/Three/Three';
+import ModuleTwoFour from './ovas/module-two/Units/Four/Four';
 
 import './App.css'
 
@@ -34,6 +37,9 @@ function App() {
         <Route path="/module-one/five" element={<ModuleOneFive />} />
 
         <Route path="/module-two/one" element={<ModuleTwoOne />} />
+        <Route path="/module-two/two" element={<ModuleTwoTwo />} />
+        <Route path="/module-two/three" element={<ModuleTwoThree />} />
+        <Route path="/module-two/four" element={<ModuleTwoFour />} />
 
         {/* <Route path="/module-one/four" element={<ModuleOneFour />} />
         <Route path="/module-one/five" element={<ModuleOneFive />} /> */}
