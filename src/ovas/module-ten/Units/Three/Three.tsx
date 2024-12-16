@@ -2,51 +2,43 @@
 
 import React from 'react'
 import ScrollContent from '../../../../components/ScrollContent/ScrollContent'
-import { CardThinking } from '../../../../components/Cards/CardThinking'
 import { Header } from '../../../../components/AnimatedHeader/AnimatedHeader'
 import { AnimatedElement } from '../../../../components/AnimatedElement/AnimatedElement'
 import { CardNote } from '../../../../components/Cards/CardNote'
 import { CardFoldHorizontal } from '../../../../components/Cards/CardFoldHorizontal'
-import FocusComponent from '../../../../components/FocusComponent/FocusComponent'
 import { CardSelection } from '../../../../components/Cards/CardSelection'
 import { AnimatedText } from '../../../../components/AnimatedText/AnimatedText'
 import { CardTitle } from '../../../../components/Cards/CardTitle'
 import { CardSwap } from '../../../../components/Cards/CardSwap'
-
-import IMGtabla3 from '../../../../assets/module-one/three/tabla3.png'
-import IMGQuiz from '../../../../assets/module-one/three/quiz.png'
-import IMGMethods from '../../../../assets/module-one/three/methods.png'
-
-
-import { Grid2X2, TreeDeciduous, DollarSign } from 'lucide-react';
-import MultipleChoiceQuiz from './ActivityProblem'
+import IMGLaw from '../../../../assets/module-ten/three/law.jpg'
+import IMGTable3 from '../../../../assets/module-ten/three/table3.png'
+import IMGNorma from '../../../../assets/module-ten/three/principal.jpg'
 
 function Three() {
   const sections = [
-    '3.1 Métodos de Identificación y Análisis de Problemas',
-    '3.1.1 Definición y proceso de identificación de problemas',
-    '3.1.2 Métodos de Análisis de Problemas',
-    '3.2 Herramientas y Técnicas para la Toma de Decisiones',
-    'Actividad de Resolución de Problemas'
+    '3.1 Legislación y regulaciones aplicables',
+    '3.1.1. legislación aplicable',
+    '3.2 Herramientas para el cumplimiento normativo',
+    '3.2.1. cumplimiento normativo'
   ];
   
   return (
     <div className='w-full h-screen flex flex-col'>
       <div className='block justify-center h-[100px]'>
         <Header 
-          title={'Resolución de Problemas'} 
+          title={'Cumplimiento Normativo'} 
           subtitle={'Unidad 3'} 
           chapter={'3'}
-          prevRoute="/module-one/two"
-          nextRoute="/module-one/four"
+          prevRoute="/module-ten/two"
+          nextRoute="/module-ten/four"
           />
           
       </div>
       <ScrollContent sections={sections}>
         <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
           <CardTitle  
-            title="Métodos de Identificación y Análisis de Problemas"
-            subtitle='Definición, análisis, procesos y herramientas'
+            title="Cumplimiento Normativo"
+            subtitle='Definición y herramientas'
             className="top-[-200px] "
           />
 
@@ -57,46 +49,84 @@ function Three() {
             duration={1}
             className={'left-[50% - 500px] top-[250px] z-[-1] justify-center flex-center'}
           >
-            <img src={IMGMethods} className='w-[500px]'/>
+            <img src={IMGNorma} className='w-[400px]'/>
 
           </AnimatedElement>
 
         </div>
+        {/* definiciones */}
         <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
+        
+        <AnimatedElement 
+            type={'slide'}
+            slideDirection={'bottom'}
+            delay ={0.5}
+            duration={1}
+            className={'left-[150px] top-[200px] z-[-1] justify-center flex-center'}
+          >
+            <img src={IMGLaw} className=' w-[450px]'/>
+          </AnimatedElement>
 
-          <CardNote
-            title="Definición y proceso de identificación de problemas"
-            content={
-              'Identificar un problema es el primer paso crítico en el proceso de resolución de problemas. ' +
-              'Según Kepner & Tregoe (1997), la identificación de un problema implica reconocer que ' +
-              'existe una discrepancia entre el estado actual y el deseado, y que se necesita una ' +
-              'intervención para resolverla. Este proceso incluye la recopilación de datos relevantes, la ' +
-              'observación y la consulta con las partes interesadas.'
-            }
-            author="Kepner & Tregoe, 1997"
-            width="400px"
-            height="450px"
-            className="top-[40px] left-[100px] bg-[#d9d9d9a4]"
+        <CardNote
+            title="Legislación y regulaciones aplicables"
+            content={'Las empresas deben adherirse a una variedad de regulaciones que incluyen:'}
+            // author='Beauchamp & Childress, 2001.'
+            width='500px'
+            height='150px'  
+           className='top-[40px] left-[150px] bg-[#d9d9d9a4]'
           />
 
-          <AnimatedElement 
-            type={'slide'}
-            slideDirection={'right'}
-            delay ={0}
-            duration={0.8}
-            className={'left-[530px] top-[50px] z-[-1]'}
-          >
-            <img src={IMGtabla3} className='w-[700px]'/>
-            <AnimatedText className={'text-sm text-center text-gray-700'} 
-            text={'Ilustración 2 - Habilidades Esenciales de un Líder'} 
-            type={'topToBottom'}
-            delay = {2}
-            duration = {0.8}
-            />
-          </AnimatedElement>
+          <CardSwap 
+            frontContent={(
+              <>
+              <div className='flex flex-col justify-center items-center h-full'>
+                  {/* <img src={ICON2} className=' w-[70px]'/>  */}
+                  <h3 className="text-2xl mb-2 text-center">Regulaciones Ambientales:</h3>
+                  <h4 className="text-xl text-gray-600 text-center">{'( Tap )'}</h4>
+                </div>
+              </>
+            )} 
+            backContent={(
+              <>
+              <h3 className="text-xl font-semibold mb-2">Regulaciones Ambientales:</h3>
+                  <p className="text-gray-700">
+                  Normas sobre la reducción de emisiones, gestión de residuos, y uso de recursos sostenibles
+                  - Jasch, 2003
+                  </p>
+              </>
+            )}
+            width='400px'
+            height='250px'  
+           className='absolute left-[300px] top-[200px]'
+          />
 
-          
+        <CardSwap 
+            frontContent={(
+              <>
+              <div className='flex flex-col justify-center items-center h-full'>
+                  {/* <img src={ICON2} className=' w-[70px]'/>  */}
+                  <h3 className="text-2xl mb-2 text-center">Regulaciones Laborales:</h3>
+                  <h4 className="text-xl text-gray-600 text-center">{'( Tap )'}</h4>
+                </div>
+              </>
+            )} 
+            backContent={(
+              <>
+              <h3 className="text-xl font-semibold mb-2">Regulaciones Laborales:</h3>
+                  <p className="text-gray-700">
+                  Incluyen leyes sobre igualdad de oportunidades, salud y
+                  seguridad en el trabajo, y derechos de los empleados 
+                  - Sparrow et al., 2016
+                  </p>
+              </>
+            )}
+            width='400px'
+            height='250px'  
+           className='absolute left-[300px] top-[-350px]'
+          />
         </div>
+
+        {/* herramientas */}
 
         <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-row items-center justify-center">
 
@@ -106,10 +136,9 @@ function Three() {
                 content: (
                   <>
                     <div className="flex flex-col justify-center items-center h-full">
-                      <h3 className="text-2xl font-semibold mb-2 text-center">Métodos de análisis de problemas</h3>
+                      <h3 className="text-2xl font-semibold mb-2 text-center">Herramientas para el cumplimiento normativo</h3>
                       <p className="text-gray-700 text-xm text-center">
-                        El análisis de problemas es un paso esencial que permite descomponer un problema en sus
-                        componentes básicos para entenderlo mejor.
+                      Las herramientas para asegurar el cumplimiento incluyen:
                       </p>
                       <h4 className="text-xm text-gray-600 text-center mt-4">( Tap )</h4>
                     </div>
@@ -119,11 +148,11 @@ function Three() {
               {
                 content: (
                   <>
-                    <h3 className="text-xl font-semibold mb-2">Análisis de Causa y Efecto (Diagrama de Ishikawa)</h3>
+                    <h3 className="text-xl font-semibold mb-2">Sistemas de Gestión de Cumplimiento</h3>
                     <p className="text-gray-700 text-xm">
-                      Este método, desarrollado por Kaoru Ishikawa, es útil para identificar las causas raíz de un problema. El
-                      diagrama de espina de pescado ayuda a desglosar el problema en categorías como personas, métodos, materiales,
-                      y maquinaria (Ishikawa, 1986).
+                    Plataformas integradas que ayudan a las
+                    empresas a gestionar sus obligaciones regulatorias
+                    (Mcnulty & Bies, 2013).
                     </p>
                   </>
                 ),
@@ -131,183 +160,73 @@ function Three() {
               {
                 content: (
                   <>
-                    <h3 className="text-xl font-semibold mb-2">Análisis FODA (SWOT)</h3>
-                    <p className="text-gray-700 text-xm">
-                      Según Puyt et al. (2023), el análisis FODA es una herramienta estratégica que evalúa las fortalezas,
-                      debilidades, oportunidades y amenazas asociadas con una situación o problema específico.
+                    <h3 className="text-xl font-semibold mb-2">Auditorías y Evaluaciones de Cumplimiento:</h3>
+                    <p className="text-gray-700 text-xm">Evaluaciones periódicas para
+                    identificar y corregir áreas de incumplimiento (Kpmg, 2016).
                     </p>
                   </>
                 ),
-              },
-              {
-                content: (
-                  <>
-                    <h3 className="text-xl font-semibold mb-2">Análisis de Pareto</h3>
-                    <p className="text-gray-700 text-xm">
-                      Este principio, basado en la regla del 80/20, sugiere que el 80% de los problemas se derivan del 20% de las
-                      causas. Identificar estas causas clave es crucial para una solución efectiva (Juran & Gryna, 1988).
-                    </p>
-                  </>
-                ),
-              },
+              }
             ]}
             width="300px"
             height="350px"
             className="top-[-100px] left-[0px]"
           />
+      </div>
+       {/* Conceptos claves */}
+       <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
+        <AnimatedElement 
+          type={'slide'}
+          slideDirection={'top'}
+          delay ={0}
+          duration={1}
+          className={'left-[500px] top-[70px] z-[-1]'}
+        > 
+        <img src={IMGTable3} className='w-[600px]'/> 
+        <AnimatedText 
+            className={'text-sm text-center text-gray-700'} 
+            text={'Ilustración 3 - Herramientas para el Cumplimiento Normativo'} 
+            type={'topToBottom'}
+            delay = {1.5}
+            duration = {1}
+            />
+        </AnimatedElement>
 
-
-        </div>
-
-        <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
-
-          <CardNote
-            title="Herramientas y técnicas para la toma de decisiones"
-            content={
-              'Existen varias herramientas y técnicas que pueden facilitar la toma de decisiones:'
-            }
-            width="1100px"
-            height="120px"
-            className="top-[40px] left-[100px] bg-[#d9d9d9a4]"
+                    
+        <CardNote 
+            title='Conceptos Clave en Ética Empresarial y Responsabilidad Social'
+            content={'Cada decisión empresarial tiene un impacto. ' +
+              'Esta imagen ilustra cómo la ética guía a las organizaciones  ' +
+              'hacia un enfoque más responsable y sostenible ' }
+            width='400px'
+            height='200px'  
+           className='top-[60px] left-[80px] bg-[#d9d9d9a4]'
           />
 
-          <div className='flex flex-row gap-[20px] mr-[50px] relative w-full h-full'>
-
-            <AnimatedElement
-              type="slide"
-              slideDirection="bottom"
-              delay={0.5}
-              duration={0.8}
-              className="top-[200px] left-[100px]"
-            >
-              <CardSwap
-                frontContent={
-                  <>
-                    <div className="flex flex-col h-full justify-between items-center">
-                      <h3 className="text-xl font-semibold mb-2 text-center">Matriz de Decisión</h3>
-                      <p className="text-sm text-gray-700 text-center">
-                        Esta herramienta permite comparar varias alternativas en función de criterios específicos,
-                        asignando una puntuación a cada opción. Es útil para decisiones complejas con múltiples factores a considerar
-                        (Kepner & Tregoe, 1997).
-                      </p>
-                      <div className="flex flex-col justify-center items-center mt-4">
-                        <Grid2X2 className="w-12 h-12 text-blue-500 mb-2" /> {/* Icono de lucide-react */}
-                        <h4 className="text-sm text-gray-600 text-center">( Tap )</h4>
-                      </div>
-                    </div>
-                  </>
-                }
-                backContent={
-                  <>
-                    <h3 className="text-xl font-semibold mb-2">Matriz de Decisión</h3>
-                    <p className="text-gray-700 text-sm">
-                      Utiliza una tabla para comparar opciones según criterios clave, asignando puntuaciones para
-                      determinar la mejor alternativa.
-                    </p>
-                  </>
-                }
-                width="350px"
-                height="350px"
-                className="top-[0] left-[0]"
+        <AnimatedElement 
+              type={'popup'}
+              slideDirection={'bottom'}
+              delay ={4}
+              duration={2}
+              className={'top-[40px] left-[770px] z-[13]'}
+              >
+              <CardSelection
+                question=" Las auditorías internas son una herramienta opcional para garantizar el cumplimiento normativo"
+                options={[
+                  {
+                    label: "Falso",
+                    content: "¡Muy bien por intentar responder! Las auditorías internas son fundamentales para asegurar que se cumplan todas las normas y regulaciones.",
+                  },
+                  {
+                    label: "Verdadero",
+                    content: "Te invitamos a explorar más sobre el tema y puedas expandir tus conocimientos.",
+                  },
+                ]}
+                width={'400px'}
+                height={'250px'}
+                className='absolute top-[300px] left-[-690px]'
               />
             </AnimatedElement>
-
-            <AnimatedElement
-              type="slide"
-              slideDirection="bottom"
-              delay={1}
-              duration={0.8}
-              className="top-[200px] left-[480px]"
-            >
-              <CardSwap
-                frontContent={
-                  <>
-                    <div className="flex flex-col h-full justify-between items-center">
-                      <h3 className="text-xl font-semibold mb-2 text-center">Árbol de Decisión</h3>
-                      <p className="text-sm text-gray-700 text-center">
-                        Según Raiffa (1969), un árbol de decisión es un diagrama que representa las decisiones y
-                        sus posibles consecuencias, incluidas las probabilidades de ocurrencia. Es especialmente útil
-                        en situaciones de incertidumbre.
-                      </p>
-                      <div className="flex flex-col justify-center items-center mt-4">
-                        <TreeDeciduous className="w-12 h-12 text-green-500 mb-2" /> {/* Icono de lucide-react */}
-                        <h4 className="text-sm text-gray-600 text-center">( Tap )</h4>
-                      </div>
-                    </div>
-                  </>
-                }
-                backContent={
-                  <>
-                    <h3 className="text-xl font-semibold mb-2">Árbol de Decisión</h3>
-                    <p className="text-gray-700 text-sm">
-                      Representa visualmente las decisiones, posibles resultados, y sus probabilidades, facilitando
-                      un análisis sistemático en condiciones de incertidumbre.
-                    </p>
-                  </>
-                }
-                width="350px"
-                height="350px"
-                className=""
-              />
-            </AnimatedElement>
-
-            <AnimatedElement
-              type="slide"
-              slideDirection="bottom"
-              delay={1.5}
-              duration={0.8}
-              className="top-[200px] left-[860px]"
-            >
-              <CardSwap
-                frontContent={
-                  <>
-                    <div className="flex flex-col h-full justify-between items-center">
-                      <h3 className="text-xl font-semibold mb-2 text-center">Análisis de Costo-Beneficio</h3>
-                      <p className="text-sm text-gray-700 text-center">
-                        Este método implica evaluar los costos y beneficios asociados con cada opción para
-                        determinar la viabilidad económica de las alternativas (Boardman et al., 2017).
-                      </p>
-                      <div className="flex flex-col justify-center items-center mt-4">
-                        <DollarSign className="w-12 h-12 text-yellow-500 mb-2" /> {/* Icono de lucide-react */}
-                        <h4 className="text-sm text-gray-600 text-center">( Tap )</h4>
-                      </div>
-                    </div>
-                  </>
-                }
-                backContent={
-                  <>
-                    <h3 className="text-xl font-semibold mb-2">Análisis de Costo-Beneficio</h3>
-                    <p className="text-gray-700 text-sm">
-                      Evalúa la viabilidad económica comparando los costos y beneficios asociados con
-                      las diferentes alternativas.
-                    </p>
-                  </>
-                }
-                width="350px"
-                height="350px"
-                className=""
-              />
-            </AnimatedElement>
-
-          </div>
-        </div>
-
-        <div className="bg-primary text-primary-foreground p-8 h-screen flex flex-col items-center justify-center">
-          <div className='mb-[150px]'>
-              <MultipleChoiceQuiz/>
-          </div>
-
-          <AnimatedElement 
-            type={'slide'}
-            slideDirection={'left'}
-            delay ={0}
-            duration={0.3}
-            className={'left-[-125px] bottom-[-50px] z-[-1]'}
-          >
-            <img src={IMGQuiz} className='w-[700px]'/>
-
-          </AnimatedElement>
-
         </div>
 
       </ScrollContent>

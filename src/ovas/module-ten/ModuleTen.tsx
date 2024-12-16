@@ -1,6 +1,6 @@
 import HomeContent from '../../components/HomeContent/HomeConent';
 import OptionsContent from '../../components/OptionsContent/OptionsContent';
-import IMGmodule from '../../assets/module-one/module1.png'
+import IMGmodule from '../../assets/module-ten/inicio-10.png'
 
 
 interface ContentItem {
@@ -72,8 +72,6 @@ interface ContentItem {
     para contribuir positivamente al entorno social y ambiental.
 `;
     
-    const sections = ['Sección 1', 'Sección 2', 'Sección 3']
-  
     return (
       <>
         <HomeContent 
@@ -87,7 +85,7 @@ interface ContentItem {
               objectives={objectives}
               courseInfo={courseInfo}
             />
-          <img src={IMGmodule} className='absolute top-[170px] left-[700px] z-[-1]' alt=""/>
+          <img src={IMGmodule} className='absolute top-[180px] left-[800px] z-[-1]' alt=""/>
         </HomeContent>
       </>
     )

@@ -9,6 +9,10 @@ import ModuleOneFive from './ovas/module-one/Units/Five/Five';
 import './App.css'
 import ModuleTen from './ovas/module-ten/ModuleTen';
 import ModuleTenOne from './ovas/module-ten/Units/One/One';
+import ModuleTenTwo from './ovas/module-ten/Units/Two/Two';
+import ModuleTenThree from './ovas/module-ten/Units/Three/Three';
+import ModuleTenFour from './ovas/module-ten/Units/Four/Four';
+import ModuleTenFive from './ovas/module-ten/Units/Five/Five';
 
 function App() {
   return (
@@ -23,6 +27,10 @@ function App() {
         
         <Route path="/module-ten" element={<ModuleTen />} />
         <Route path="/module-ten/one" element={<ModuleTenOne />} />
+        <Route path="/module-ten/two" element={<ModuleTenTwo />} />
+        <Route path="/module-ten/three" element={<ModuleTenThree />} />
+        <Route path="/module-ten/four" element={<ModuleTenFour />} />
+        <Route path="/module-ten/five" element={<ModuleTenFive />} />
         {/* <Route path="/module-one/four" element={<ModuleOneFour />} />
         <Route path="/module-one/five" element={<ModuleOneFive />} /> */}
         {/* Define más rutas para otros módulos y unidades */}
