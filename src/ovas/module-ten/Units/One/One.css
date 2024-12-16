@@ -1,0 +1,9 @@
+.thinking-one{
+  position: absolute;
+  top: 100px;
+  left: 200px;
+}
+
+.thinking-one > div{
+  background-color: #d9d9d9a4;
+}
