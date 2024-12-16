@@ -82,7 +82,7 @@ function One() {
               className='top-[20px] left-[180px] child:bg-[#d9d9d9a4]'
             />
             {/* TODO: Conseguir el PNG, para incluirlo en el FOCUS*/}
-        <img src={IMGdruker} alt="" className='absolute top-[170px] left-[-50px] w-[600px]'/>  
+        <img src={IMGdruker} alt="" className='absolute top-[190px] left-[-50px] w-[600px]'/>  
         </FocusComponent>
         <AnimatedElement 
           type={'slide'}
@@ -354,7 +354,7 @@ function One() {
               </>
             )}
             width='380px'
-            height='420px'  
+            height='450px'  
             className='absolute'
           />
         </AnimatedElement>
@@ -389,7 +389,7 @@ function One() {
               </>
             )}
             width='380px'
-            height='420px'  
+            height='450px'  
            className='absolute'
           />
         </AnimatedElement>
@@ -425,7 +425,7 @@ function One() {
               </>
             )}
             width='380px'
-            height='420px'  
+            height='450px'  
            className='absolute'
           />
         </AnimatedElement> 

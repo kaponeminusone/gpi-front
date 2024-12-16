@@ -2,15 +2,15 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom'; // Importar Link
+import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
   title: string;
   subtitle: string;
   chapter?: string;
-  prevRoute?: string; // Ruta hacia atrás
-  nextRoute?: string; // Ruta hacia adelante
+  prevRoute?: string;
+  nextRoute?: string;
 }
 
 export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter, prevRoute, nextRoute }) => {
@@ -73,8 +73,8 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter, prevRo
       <div className="absolute inset-0 bg-gray-100 bg-opacity-10 backdrop-blur-sm" />
       <div className="absolute inset-0">
         <div className="h-full bg-gradient-to-r from-gray-800 to-gray-700 rounded-br-[2rem]">
-          <div className='absolute right-[20px] top-[25%] z-[1]'>
-              {/* Navigation Arrows */}
+          <div className="absolute right-[20px] top-[25%] z-[1]">
+            {/* Navigation Arrows */}
             <div className="flex items-center gap-4">
               {prevRoute && (
                 <Link
@@ -103,6 +103,11 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, chapter, prevRo
         style={{ scale }}
         className="relative h-full container mx-auto px-4 py-2 flex items-center justify-between"
       >
+        {/* Home Icon */}
+        <Link to="/" className="absolute top-[25%] left-[-30px] p-2 bg-gray-700 rounded-full text-white hover:bg-gray-600">
+          <Home className="w-6 h-6" />
+        </Link>
+
         {/* Chapter circle */}
         {chapter && (
           <motion.div
