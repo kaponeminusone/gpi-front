@@ -30,7 +30,7 @@ function One() {
       <div className='block justify-center h-[100px]'>
         <Header 
           title={'Introducción a la Ética Empresarial y Responsabilidad Social'} 
-          subtitle={'Unidad 10'} 
+          subtitle={'Unidad 1'} 
           chapter={'1'}
           prevRoute="/module-ten"
           nextRoute="/module-ten/two" //sin definir luego cambiarla
@@ -220,7 +220,7 @@ function One() {
               'Esta imagen ilustra cómo la ética guía a las organizaciones  ' +
               'hacia un enfoque más responsable y sostenible ' }
             width='400px'
-            height='200px'  
+            height=''  
            className='top-[60px] left-[80px] bg-[#d9d9d9a4]'
           />
 

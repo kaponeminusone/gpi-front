@@ -17,9 +17,9 @@ import IMGNorma from '../../../../assets/module-ten/three/principal.jpg'
 function Three() {
   const sections = [
     '3.1 Legislación y regulaciones aplicables',
-    '3.1.1. legislación aplicable',
-    '3.2 Herramientas para el cumplimiento normativo',
-    '3.2.1. cumplimiento normativo'
+    '3.1.1. Legislación aplicable',
+    '3.2 Herramientas para el Cumplimiento Normativo',
+    '3.2.1. Cumplimiento N  ormativo'
   ];
   
   return (
@@ -199,7 +199,7 @@ function Three() {
               'Esta imagen ilustra cómo la ética guía a las organizaciones  ' +
               'hacia un enfoque más responsable y sostenible ' }
             width='400px'
-            height='200px'  
+            height=''  
            className='top-[60px] left-[80px] bg-[#d9d9d9a4]'
           />
 

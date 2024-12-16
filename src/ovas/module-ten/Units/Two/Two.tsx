@@ -237,8 +237,8 @@ function Two() {
               </div>)}
             ]}
             width={'250px'}
-            height={'350px'}
-            className='absolute top-[-10px] left-[200px]' // Agregado: border-radius, background, shadow
+            height={'400px'}
+            className='absolute top-[-10px] left-[150px] mt-[20px]' // Agregado: border-radius, background, shadow
           />   
 
         </div>
