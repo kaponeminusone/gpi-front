@@ -19,7 +19,9 @@ import ModuleTwoFour from './ovas/module-two/Units/Four/Four';
 
 import ModuleThreeOne from './ovas/module-three/Units/One/One';
 import ModuleThreeTwo from './ovas/module-three/Units/Two/Two';
-
+import ModuleThreeThree from './ovas/module-three/Units/Three/Three';
+import ModuleThreeFour from './ovas/module-three/Units/Four/Four';
+import ModuleThreeFive from './ovas/module-three/Units/Five/Five';
 
 import ModuleTenOne from './ovas/module-ten/Units/One/One';
 import ModuleTenTwo from './ovas/module-ten/Units/Two/Two';
@@ -55,8 +57,9 @@ function App() {
 
         <Route path="/module-three/one" element={<ModuleThreeOne />} />
         <Route path="/module-three/two" element={<ModuleThreeTwo />} />
-        {/* <Route path="/module-three/three" element={<ModuleTwoThree />} />
-        <Route path="/module-three/four" element={<ModuleTwoFour />} /> */}
+        <Route path="/module-three/three" element={<ModuleThreeThree />} />
+        <Route path="/module-three/four" element={<ModuleThreeFour />} />
+        <Route path="/module-three/five" element={<ModuleThreeFive />} />
 
         <Route path="/module-ten" element={<ModuleTen />} />
         <Route path="/module-ten/one" element={<ModuleTenOne />} />
