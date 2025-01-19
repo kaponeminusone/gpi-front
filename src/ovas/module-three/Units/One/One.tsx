@@ -1,5 +1,5 @@
 // Modulo tres - Unidad Uno: Innovación y Creatividad
-import React from 'react'
+// import React from 'react'
 import ScrollContent from '../../../../components/ScrollContent/ScrollContent'
 import { Header } from '../../../../components/AnimatedHeader/AnimatedHeader'
 import { AnimatedElement } from '../../../../components/AnimatedElement/AnimatedElement'
