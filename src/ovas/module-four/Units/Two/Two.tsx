@@ -10,7 +10,7 @@ import { AnimatedText } from '../../../../components/AnimatedText/AnimatedText'
 import { CardTitle } from '../../../../components/Cards/CardTitle'
 import { CardSwap } from '../../../../components/Cards/CardSwap'
 
-import IMGPri from '../../../../assets/module-ten/four/auxiliar.jpg'
+import IMGPri from '../../../../assets/module-four/Two/IMG4.png'
 import IMGint2 from '../../../../assets/module-four/Two/IMG1.png'
 import ICON4_2 from '../../../../assets/module-four/Two/ICON5.png'
 import ICON4_3 from '../../../../assets/module-four/Two/ICON1.png'
