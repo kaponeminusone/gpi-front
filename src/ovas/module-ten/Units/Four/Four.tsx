@@ -2,13 +2,10 @@
 
 import React from 'react'
 import ScrollContent from '../../../../components/ScrollContent/ScrollContent'
-import { CardThinking } from '../../../../components/Cards/CardThinking'
 import { Header } from '../../../../components/AnimatedHeader/AnimatedHeader'
 import { AnimatedElement } from '../../../../components/AnimatedElement/AnimatedElement'
 import { CardNote } from '../../../../components/Cards/CardNote'
 import { CardFoldHorizontal } from '../../../../components/Cards/CardFoldHorizontal'
-import FocusComponent from '../../../../components/FocusComponent/FocusComponent'
-import { CardSelection } from '../../../../components/Cards/CardSelection'
 import { AnimatedText } from '../../../../components/AnimatedText/AnimatedText'
 import { CardTitle } from '../../../../components/Cards/CardTitle'
 import { CardSwap } from '../../../../components/Cards/CardSwap'
@@ -17,11 +14,7 @@ import IMGPri from '../../../../assets/module-ten/four/auxiliar.jpg'
 import IMGint2 from '../../../../assets/module-ten/four/principal.jpg'
 import IMGaux2 from '../../../../assets/module-ten/four/auxiliar2.jpg'
 import IMGtabla4 from '../../../../assets/module-ten/four/tabla4.png'
-import IMGtransmitir from '../../../../assets/module-one/four/transmitir.jpg'
-import IMGpublic from '../../../../assets/module-one/four/publico.jpg'
-import IMGTrur from '../../../../assets/module-one/four/truefalse.png'
 
-import { CardFoldChained } from '../../../../components/Cards/CardFoldChained'
 import { VideoPlayer } from '../../../../components/VideoPlayer/VideoPlayer'
 
 
