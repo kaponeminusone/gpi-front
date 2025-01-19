@@ -18,7 +18,7 @@ import IMGtabla4 from '../../../../assets/module-ten/four/tabla4.png'
 import { VideoPlayer } from '../../../../components/VideoPlayer/VideoPlayer'
 
 
-function One() {
+function Three() {
   const sections = [
     '4.1 Planificación y ejecución de programas de RSC',
     '4.1.1 Concepto y principios clave',
@@ -30,9 +30,9 @@ function One() {
     <div className='w-full h-screen flex flex-col'>
       <div className='block justify-center h-[100px]'>
         <Header 
-          title={'Introducción a la Gestión Financiera'} 
-          subtitle={'Unidad 1'} 
-          chapter={'1'}
+          title={'Planificación y ejecución de programas de RSC'} 
+          subtitle={'Unidad 4'} 
+          chapter={'4'}
           prevRoute="/module-ten/three"
           nextRoute="/module-ten/five"
           />
@@ -218,4 +218,4 @@ function One() {
   )
 }
 
-export default One
+export default Three
