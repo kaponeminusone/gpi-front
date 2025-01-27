@@ -9,9 +9,9 @@ const modules = [
   { id: 'four', number: '04', name: 'Gestión financiera', active: true },
   { id: 'five', number: '05', name: 'Marketing y ventas', active: true },
   { id: 'six', number: '06', name: 'Desarrollo de productos/servicios', active: true },
-  { id: 'seven', number: '07', name: 'Gestión de recursos humanos', active: false },
-  { id: 'eight', number: '08', name: 'Tecnología y transformación digital', active: false },
-  { id: 'nine', number: '09', name: 'Networking y colaboración', active: false },
+  { id: 'seven', number: '07', name: 'Gestión de recursos humanos', active: true },
+  { id: 'eight', number: '08', name: 'Tecnología y transformación digital', active: true },
+  { id: 'nine', number: '09', name: 'Networking y colaboración', active: true },
   { id: 'ten', number: '10', name: 'Ética empresarial y responsabilidad social', active: true },
 ];
 
